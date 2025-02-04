@@ -111,7 +111,9 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
               <Td data-label="Nome">{item.nome}</Td>
               <Td data-label="Email">{item.email}</Td>
               <Td data-label="Telefone">{item.telefone}</Td>
-              <Td data-label="Data de Nascimento">{item.data_nasc || "N/A"}</Td>
+              <Td data-label="Data de Nascimento">
+  {item.data_nasc ? new Date(item.data_nasc).toLocaleDateString("pt-BR") : "N/A"}
+</Td>
               <Td data-label="CPF">{item.cpf || "N/A"}</Td>
               <Td data-label="Endereço">{item.endereco || "N/A"}</Td>
               <Td data-label="Sexo">{item.sexo || "N/A"}</Td>
