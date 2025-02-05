@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "nodemon index.js",
-    "vercel-build": "npx prisma migrete deploy"
+    "vercel-build": "npx prisma migrete deploy",
+    "dev": "next dev",
+    "build": "next build"
   },
   "keywords": [],
   "author": "",
