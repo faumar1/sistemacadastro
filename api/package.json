@@ -6,9 +6,12 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "vercel-build": "npx prisma migrete deploy",
-    "dev": "next dev",
+    "vercel-build": "npx prisma migrate deploy",
+    "dev": "nodemon index.js",
     "build": "next build"
+  },
+  "engines": {
+    "node": "22.x"
   },
   "keywords": [],
   "author": "",
