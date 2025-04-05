@@ -1,27 +1,23 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "",
+  "description": "API Express pronta para Heroku",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "vercel-build": "npx prisma migrate deploy",
-    "dev": "nodemon index.js",
-    "build": "next build"
+    "dev": "nodemon index.js"
   },
   "engines": {
-    "node": "22.x"
+    "node": "20.x"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.22",
-    "pg": "^8.13.1",
-    "yarn": "^1.22.22"
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
