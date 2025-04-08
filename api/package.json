@@ -2,7 +2,7 @@
   "name": "api",
   "version": "1.0.0",
   "description": "API Express pronta para Heroku",
-  "main": "index.js",
+  "start": "node index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js",
