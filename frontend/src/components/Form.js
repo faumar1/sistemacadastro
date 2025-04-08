@@ -76,7 +76,11 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
   };
 
   return (
-    <form ref={ref} onSubmit={handleSubmit} className="container mt-4 p-4 bg-white shadow rounded">
+    <form
+      ref={ref}
+      onSubmit={handleSubmit}
+      className="container mt-4 p-4 bg-white shadow rounded"
+    >
       <div className="row g-3">
         <div className="col-md-6">
           <label className="form-label">Nome</label>
@@ -153,8 +157,9 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
             className="form-select"
             required
             aria-label="Sexo"
+            defaultValue=""
           >
-            <option value="" disabled selected>
+            <option value="" disabled>
               Selecione
             </option>
             <option value="M">Masculino</option>
