@@ -3,9 +3,6 @@ import React, { useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// 🔗 URL da API
-const API_URL = process.env.REACT_APP_API_URL || "https://meu-backend-api-salaorm-5d14213af4d9.herokuapp.com/api/users";
-
 const Form = ({ getUsers, onEdit, setOnEdit }) => {
   const ref = useRef();
 
@@ -38,30 +35,34 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
       return toast.warn("Preencha todos os campos!");
     }
 
-    const payload = {
-      nome: user.nome.value,
-      email: user.email.value,
-      telefone: user.telefone.value,
-      data_nasc: user.data_nasc.value,
-      cpf: user.cpf.value,
-      endereco: user.endereco.value,
-      sexo: user.sexo.value,
-    };
-
     try {
       if (onEdit) {
-        await axios.put(`${API_URL}/${onEdit.id}`, payload);
+        await axios.put(`http://localhost:8800/${onEdit.id}`, {
+          nome: user.nome.value,
+          email: user.email.value,
+          telefone: user.telefone.value,
+          data_nasc: user.data_nasc.value,
+          cpf: user.cpf.value,
+          endereco: user.endereco.value,
+          sexo: user.sexo.value,
+        });
         toast.success("Usuário atualizado com sucesso!");
       } else {
-        await axios.post(API_URL, payload);
+        await axios.post("http://localhost:8800", {
+          nome: user.nome.value,
+          email: user.email.value,
+          telefone: user.telefone.value,
+          data_nasc: user.data_nasc.value,
+          cpf: user.cpf.value,
+          endereco: user.endereco.value,
+          sexo: user.sexo.value,
+        });
         toast.success("Usuário cadastrado com sucesso!");
       }
     } catch (error) {
       toast.error("Erro ao conectar com o servidor.");
-      console.error(error);
     }
 
-    // Resetar campos
     user.nome.value = "";
     user.email.value = "";
     user.telefone.value = "";
@@ -80,7 +81,99 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
       onSubmit={handleSubmit}
       className="container mt-4 p-4 bg-white shadow rounded"
     >
-      {/* ... mantém os campos do formulário como estão */}
+      <div className="row g-3">
+        <div className="col-md-6">
+          <label className="form-label">Nome</label>
+          <input
+            name="nome"
+            className="form-control"
+            placeholder="Digite seu nome"
+            required
+            aria-label="Nome"
+          />
+        </div>
+
+        <div className="col-md-6">
+          <label className="form-label">E-mail</label>
+          <input
+            name="email"
+            type="email"
+            className="form-control"
+            placeholder="exemplo@email.com"
+            required
+            aria-label="E-mail"
+          />
+        </div>
+
+        <div className="col-md-6">
+          <label className="form-label">Telefone</label>
+          <input
+            name="telefone"
+            type="tel"
+            className="form-control"
+            placeholder="(99) 99999-9999"
+            required
+            aria-label="Telefone"
+          />
+        </div>
+
+        <div className="col-md-6">
+          <label className="form-label">Data de Nascimento</label>
+          <input
+            name="data_nasc"
+            type="date"
+            className="form-control"
+            required
+            aria-label="Data de Nascimento"
+          />
+        </div>
+
+        <div className="col-md-6">
+          <label className="form-label">CPF</label>
+          <input
+            name="cpf"
+            className="form-control"
+            placeholder="000.000.000-00"
+            required
+            aria-label="CPF"
+          />
+        </div>
+
+        <div className="col-md-6">
+          <label className="form-label">Endereço</label>
+          <input
+            name="endereco"
+            className="form-control"
+            placeholder="Rua, Número, Bairro"
+            required
+            aria-label="Endereço"
+          />
+        </div>
+
+        <div className="col-md-6">
+          <label className="form-label">Sexo</label>
+          <select
+            name="sexo"
+            className="form-select"
+            required
+            aria-label="Sexo"
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Selecione
+            </option>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+
+        <div className="col-12 text-center">
+          <button type="submit" className="btn btn-primary px-4">
+            SALVAR
+          </button>
+        </div>
+      </div>
     </form>
   );
 };

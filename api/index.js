@@ -1,12 +1,27 @@
-import express from "express"
-import userRoutes from "./routes/users.js"
-import cors from "cors"
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import userRoutes from "./routes/users.js";
 
-const app = express()
+// Inicializa variáveis de ambiente
+dotenv.config();
 
-app.use(express.json())
-app.use(cors())
+const app = express();
+const PORT = process.env.PORT || 8800;
 
-app.use("/", userRoutes)
+// Middlewares
+app.use(cors());
+app.use(express.json());
 
-app.listen(8800)
+// Rotas da API
+app.use("/api/users", userRoutes);
+
+// Rota raiz (opcional)
+app.get("/", (req, res) => {
+  res.send("API está funcionando ✅");
+});
+
+// Iniciar servidor
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor backend rodando na porta ${PORT}`);
+});
