@@ -1,18 +1,12 @@
-const express = require("express");
-const path = require("path");
-const app = express();
+import express from "express"
+import userRoutes from "./routes/users.js"
+import cors from "cors"
 
-// Rotas da API aqui
-app.use("/api/users", require("./routes/users"));
+const app = express()
 
-// Servir React em produção
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/build")));
+app.use(express.json())
+app.use(cors())
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend", "index.js"));
-  });
-}
+app.use("/", userRoutes)
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+app.listen(8800)
