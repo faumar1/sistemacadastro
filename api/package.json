@@ -2,7 +2,7 @@
   "name": "meu-backend-api-salaorm",
   "version": "1.0.0",
   "type": "module",
-  "heroku-postbuild": "npm install && npm run build",
+  "heroku-postbuild": "cd ../frontend && npm install && npm run build",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

@@ -11,7 +11,6 @@ export const getUsers = async (_, res) => {
   }
 };
 
-// 🔹 Adiciona um novo cliente
 export const addUser = async (req, res) => {
   const q = "INSERT INTO clientes (nome, email, telefone, data_nasc, cpf, endereco, sexo) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id";
 
