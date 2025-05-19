@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const Container = styled.div`
   width: 100%;
@@ -24,13 +26,15 @@ function App() {
   const [onEdit, setOnEdit] = useState(null);
 
   const getUsers = async () => {
-    try {
-      const res = await axios.get("http://localhost:8800");
-      setUsers(res.data.sort((a, b) => (a.nome > b.nome ? 1 : -1)));
-    } catch (error) {
-      toast.error(error);
-    }
-  };
+  try {
+    const API_URL = process.env.REACT_APP_API_URL;
+    const res = await axios.get(`${API_URL}/User`);
+    setUsers(res.data.sort((a, b) => (a.nome > b.nome ? 1 : -1)));
+  } catch (error) {
+    toast.error("Erro ao buscar usuários");
+    console.error(error);
+  }
+};
 
   useEffect(() => {
     getUsers();
